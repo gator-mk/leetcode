@@ -6,8 +6,13 @@ class ListNode {
 }
 
 public class MergeLinkedLists {
+    /**
+    * Merge two sorted linked lists and return it as a new list. 
+    * The new list should be made by splicing together the nodes of the first two lists.
+    */
     public ListNode mergeTwoLists(ListNode l1, ListNode l2) {
         ListNode head = null, tail = null;
+        // compare values of both nodes and merge
         while (l1 != null && l2 != null) {
             if (l1.val < l2.val) { 
                 ListNode[] result = append (head, tail, l1);
@@ -21,14 +26,17 @@ public class MergeLinkedLists {
                 l2 = l2.next;
             }
         }
-        // if l2 == null
+        // if l2 == null then merge remaining elements of l1
         if (l2 == null) head = (append (head, tail, l1))[0];
-        // if l1 == null
+        // if l1 == null then merge remaining elemts of l2
         if (l1 == null) head = (append (head, tail, l2))[0];
         return head;
     }
     
     public ListNode[] append (ListNode head, ListNode tail, ListNode n) {
+        /**
+        * Given the head and tail of a linked list, append the new node and return new head and tail
+        */
         if (head == null) {
             head = n;
             tail = n;
